@@ -1,9 +1,15 @@
 import React from "react";
 import logo from "../assets/Cipherschools_192x192.png";
+import { useNavigate } from "react-router-dom";
+import { FaRegTimesCircle } from "react-icons/fa";
 
 const Signup = () => {
+  const navigate = useNavigate();
   return (
     <div className="formContainer">
+      <div className="formClose" onClick={()=>navigate("/")}>
+        <FaRegTimesCircle />
+      </div>
       <div className="formLogo">
         <div className="logo">
           <img src={logo} alt="" width="40px" />
@@ -18,14 +24,24 @@ const Signup = () => {
         <form className="mainForm" action="" method="post">
           <input type="text" placeholder="    First Name" name="FirstName" />
           <input type="text" placeholder="    Last Name" name="LastName" />
-          <input type="text" placeholder="    Email Address" name="EmailAddress" />
+          <input
+            type="text"
+            placeholder="    Email Address"
+            name="EmailAddress"
+          />
           <input type="text" placeholder="    Phone (Optional)" name="Phone" />
           <input type="password" placeholder="    Password" name="Password" />
           <button type="submit">Create Account</button>
         </form>
       </div>
       <div className="formBottom">
-        Already Have an account? SignIn Now
+        Already Have an account?{" "}
+        <span
+          style={{ color: "blue", cursor: "pointer" }}
+          onClick={() => navigate("/signin")}
+        >
+          Sign In
+        </span>
       </div>
     </div>
   );

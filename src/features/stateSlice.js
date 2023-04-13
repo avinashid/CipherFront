@@ -14,6 +14,7 @@ export const stateSlice = createSlice({
     },
     toggleCurrSidebar:(state,action)=>{
         state.currSidebar=action.payload;
+        console.log(state.currSidebar,'asdf')
     },
     toggleCurrNavbar:(state,action)=>{
         state.currNavbar=action.payload;

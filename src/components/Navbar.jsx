@@ -5,8 +5,10 @@ import {
   useDispatch as reduxDispatch,
 } from "react-redux";
 import { toggleCurrNavbar } from "../features/stateSlice";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const nav = reduxSelector((state) => state.state.currNavbar);
   console.log(nav);
   const dispatch = reduxDispatch();
@@ -47,7 +49,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navButton">
-          <button className="navBtn">Explore Courses</button>
+          <button className="navBtn" onClick={()=>navigate("signup")}>New User </button>
         </div>
       </div>
     </div>
