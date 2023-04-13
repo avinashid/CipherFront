@@ -19,8 +19,8 @@ const Sidebar = () => {
           <FaThList />
         </div>
       </div>
-      <div className="sideContent">
-        <div className="sideContentView">
+      <div className="sideContent" >
+        <div className="sideContentView" style={{color:"white",background:"orange"}}>
           <FaHome />
           <div className="sideText">Home</div>
         </div>
@@ -31,23 +31,23 @@ const Sidebar = () => {
         </div>
         <div className="sideContentView">
           <FaCompass />
-          <div className="sideText">Home</div>
+          <div className="sideText">Trending</div>
         </div>
         <div className="sideContentView">
           <FaUsers />
-          <div className="sideText">Home</div>
+          <div className="sideText">Followers</div>
         </div>
         <div className="sideContentView">
           <FaDiscord />
-          <div className="sideText">Home</div>
+          <div className="sideText">Discord</div>
         </div>
         <div className="sideContentView">
           <FaUsersCog />
-          <div className="sideText">Home</div>
+          <div className="sideText">Creators Access</div>
         </div>
         <div className="sideContentView">
           <FaWpforms />
-          <div className="sideText">Home</div>
+          <div className="sideText">Feedback</div>
         </div>
       </div>
       <div className="sideSignin">
