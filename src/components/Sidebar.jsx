@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import {
   useSelector as reduxSelector,
   useDispatch as reduxDispatch,
@@ -36,7 +37,7 @@ const Sidebar = () => {
   const isSignin = reduxSelector((state) => state.user.isLoggedIn);
   const toggleSignin = (e) => {
     if (isSignin) {
-      localStorage.setItem("userToken", "");
+      Cookies.remove('userToken');
       dispatch(fetchInitialState());
       dispatch(toggleCurrSidebar("home"));
       navigate("/");
@@ -48,8 +49,9 @@ const Sidebar = () => {
 
   return (
     <div
+      
       className={
-        expandedSidebar ? "sideWrapper expandedWrapper" : "sideWrapper"
+        expandedSidebar ? "sideWrapper expandedWrapper" : "sideWrapper" 
       }
     >
       <div className="sideToggle">
@@ -65,7 +67,7 @@ const Sidebar = () => {
           className={
             SideBtn === "home"
               ? "sideContentView sideBtnColor"
-              : "sideContentView sideContentHover"
+              : "sideContentView sideContentHover" + "hide"
           }
           onClick={() => toggleSideBtn("home")}
         >
@@ -111,7 +113,7 @@ const Sidebar = () => {
           className={
             SideBtn === "followers"
               ? "sideContentView sideBtnColor"
-              : "sideContentView sideContentHover"
+              : "sideContentView sideContentHover"  + " hide"
           }
           onClick={() => toggleSideBtn("followers")}
         >
@@ -122,7 +124,7 @@ const Sidebar = () => {
           className={
             SideBtn === "discord"
               ? "sideContentView sideBtnColor"
-              : "sideContentView sideContentHover"
+              : "sideContentView sideContentHover" + " hide"
           }
           onClick={() => toggleSideBtn("discord")}
         >
@@ -133,7 +135,7 @@ const Sidebar = () => {
           className={
             SideBtn === "creators"
               ? "sideContentView sideBtnColor"
-              : "sideContentView sideContentHover"
+              : "sideContentView sideContentHover"  + " hide"
           }
           onClick={() => toggleSideBtn("creators")}
         >
@@ -144,7 +146,7 @@ const Sidebar = () => {
           className={
             SideBtn === "feedback"
               ? "sideContentView sideBtnColor"
-              : "sideContentView sideContentHover"
+              : "sideContentView sideContentHover" + " hide"
           }
           onClick={() => toggleSideBtn("feedback")}
         >

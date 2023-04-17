@@ -10,7 +10,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   dispatch(toggleCurrSidebar("dashboard"));
   return (
-    <div>
+    <div className="dashboard">
       <Profile />
       <AboutMe />
       <OnTheWeb/>

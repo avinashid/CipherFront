@@ -5,6 +5,7 @@ import { FaRegTimesCircle } from "react-icons/fa";
 import { useDispatch as reduxDispatch } from "react-redux";
 import { fetchInitialState } from "../thunks/userThunks";
 import { toggleCurrSidebar } from "../features/stateSlice";
+import Cookies from "js-cookie";
 const Signup = () => {
   const dispatch = reduxDispatch();
   const navigate = useNavigate();
@@ -14,6 +15,38 @@ const Signup = () => {
     email: "",
     phoneNumber: null,
     password: "",
+  };
+  const setUserData = async (e) => {
+    const res = await fetch("http://localhost:5000/api/users/userdata", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${e.token}`,
+      },
+      body: JSON.stringify({
+        userId: e.id,
+        aboutme: "",
+        onTheWeb: {
+          linkedin: "",
+          facebook: "",
+          twitter: "",
+        },
+        interests: [],
+        personalInformation: {
+          highestEducation: "",
+          currentlyDoing: "",
+        },
+      }),
+    });
+
+    if (!res.ok) {
+      window.alert("UserData already Exist");
+      console.log(res);
+    } else {
+      let loginCredentials = {};
+      loginCredentials = await res.json();
+      console.log(loginCredentials)
+    }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,15 +69,16 @@ const Signup = () => {
     } else {
       let loginCredentials = {};
       loginCredentials = await res.json();
-      localStorage.setItem("userToken", loginCredentials.token);
+      Cookies.set("token", loginCredentials.token, { expires: 2 });
+      setUserData(loginCredentials)
       await dispatch(fetchInitialState());
       navigate("/dashboard");
     }
   };
-  const closeForm=()=>{
+  const closeForm = () => {
     navigate("/");
     dispatch(toggleCurrSidebar("home"));
-  }
+  };
   return (
     <div className="formContainer">
       <div className="formClose" onClick={closeForm}>

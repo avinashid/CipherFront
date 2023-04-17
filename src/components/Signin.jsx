@@ -1,5 +1,5 @@
 import React from "react";
-
+import Cookies from "js-cookie";
 import logo from "../assets/Cipherschools_192x192.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch as reduxDispatch, useSelector } from "react-redux";
@@ -34,7 +34,7 @@ const Signin = () => {
     } else {
       let loginCredentials = {};
       loginCredentials = await res.json();
-      localStorage.setItem("userToken", loginCredentials.token);
+      Cookies.set('userToken', loginCredentials.token, { expires: 2 });
       await dispatch(fetchInitialState());
       navigate("/dashboard");
     }

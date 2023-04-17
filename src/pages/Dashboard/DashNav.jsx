@@ -4,12 +4,13 @@ import { FaSearch, FaChevronDown, FaRegBell,FaSignOutAlt } from "react-icons/fa"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchInitialState } from "../../thunks/userThunks";
+import Cookies from "js-cookie";
 const DashNav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const login = useSelector(state =>state.user.isLoggedIn);
   const logout = ()=>{
-    localStorage.setItem("userToken","");
+    Cookies.remove('userToken');
     dispatch(fetchInitialState());
     navigate("/");
   }

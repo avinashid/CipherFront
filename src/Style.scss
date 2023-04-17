@@ -1,5 +1,3 @@
-// legacy
-
 .bigText {
   font-size: 1.3rem;
   color: orange;
@@ -8,12 +6,11 @@
 .sideBtnColor {
   color: white;
   background-color: orange;
-  transition: color,background-color 200ms ease-in-out;
+  transition: color, background-color 200ms ease-in-out;
 }
 .sideContentHover:hover {
   background-color: beige;
 }
-
 
 .errorPage {
   width: 100vw;
@@ -25,12 +22,13 @@
 }
 
 .homeOutlet {
-  width: calc(100vw - 65px);
+  width: calc(100vw - 85px);
+  background:#e5d6f129;
   margin-left: 65px;
   margin-top: 0px;
+  padding: 10px;
   // animation: ease-in 1s ease-in-out forwards;
 }
-
 
 .navWrapper {
   display: flex;
@@ -168,7 +166,6 @@
 }
 
 .formContainer {
- 
   border-radius: 30px;
   position: fixed;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -240,8 +237,6 @@
     font-weight: 800;
   }
 }
-
-
 
 .dashNav {
   transition: all 200ms ease-in;
@@ -319,7 +314,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0px 40px;
+    // margin: 0px 40px;
     .profileLeft {
       display: flex;
       flex-direction: row;
@@ -334,8 +329,8 @@
           width: 80px;
           height: 80px;
         }
-        .edit{
-          position:absolute;
+        .edit {
+          position: absolute;
           font-size: 20px;
           width: 25px;
           height: 25px;
@@ -347,7 +342,6 @@
           align-items: center;
           justify-content: center;
         }
-
       }
       .profileInfo {
         display: flex;
@@ -377,8 +371,7 @@
 }
 
 .aboutMe {
-  
-  padding: 30px;
+  // padding: 30px;
   border-bottom: 1px solid rgba(176, 173, 173, 0.289);
   background-color: #e5d6f129;
   // padding: 30px;
@@ -425,7 +418,8 @@
 .onWeb {
   border-bottom: 1px solid rgba(176, 173, 173, 0.289);
   background-color: #e5d6f129;
-  padding: 30px;
+  width:100%;
+  // padding: 30px;
   .onWebWrap {
     .head {
       display: flex;
@@ -473,6 +467,81 @@
             text-indent: 10px;
             border: none;
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  body{
+    margin:0px;
+    padding:0px;
+  }
+  .dashboard{
+    
+  }
+  .sideWrapper {
+    border-right: 1px solid rgba(122, 122, 122, 0.138);
+    box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.2);
+    position: absolute;
+    border-radius: 20px;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: calc(100vh - 80px);
+    overflow: hidden;
+    width: 90vw;
+    height: 50px;
+    margin: auto;
+    display: row;
+    flex-direction: row;
+    justify-content: center;
+    .sideContent {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .sideToggle{
+      display: none;
+    }
+    .sideContentView{
+      overflow: hidden;
+      align-self: center;
+    }
+    .sideSignin{
+      margin-bottom: 0px;
+      margin-left: 20px;
+    }
+    .hide{
+      display: none;
+    }
+  }
+  .homeOutlet{
+    width: calc(100vw - 40px );
+    margin-left: 0;
+    padding:20px 20px;
+    background-color: #e5d6f129;
+  }
+  .navWrapper{
+    margin: 0px;
+    width:100vw;
+    .nav{
+      padding:0px 20px;
+      .navSection{
+        display: none;
+      }
+    }
+  }
+  .dashNav{
+    width:100vw;
+    margin: 0px;
+    padding:0px;
+    .dashNavWrapper{
+      .dashNavWrapperRight{
+        .searchWrap{
+          display:none;
         }
       }
     }
