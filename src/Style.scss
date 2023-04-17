@@ -1,27 +1,44 @@
 // legacy
-body{
- rem:3px;
-}
+
 .bigText {
   font-size: 1.3rem;
   color: orange;
   transition: font-size 200ms ease-in;
 }
 .sideBtnColor {
-  color:white;
+  color: white;
   background-color: orange;
+  transition: color,background-color 200ms ease-in-out;
 }
-.sideContentHover:hover{
+.sideContentHover:hover {
   background-color: beige;
-
 }
+
+
+.errorPage {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.homeOutlet {
+  width: calc(100vw - 65px);
+  margin-left: 65px;
+  margin-top: 0px;
+  // animation: ease-in 1s ease-in-out forwards;
+}
+
+
 .navWrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: calc(100vw - 60px);
   box-shadow: 10px 10px 10px rgba(128, 128, 128, 0.1);
-  height: 70px;
+  height: 60px;
   margin: 0px 0px 0px 60px;
   .nav {
     width: 100%;
@@ -53,11 +70,9 @@ body{
       }
       .navText:hover {
         color: orange;
-        
       }
     }
     .navButton {
-      
       align-items: center;
 
       .navBtn {
@@ -75,17 +90,21 @@ body{
 }
 
 .sideWrapper {
+  z-index: 1;
+  transition: all 300ms ease-out;
+  overflow-y: hidden;
   ::-webkit-scrollbar {
     display: none;
   }
   border-right: 1px solid rgba(122, 122, 122, 0.138);
   box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.1);
   position: fixed;
+  background-color: white;
   top: 0;
   left: 0;
   bottom: 0;
   overflow-y: auto;
-  width: 60px;
+  width: 65px;
   height: 100vh;
   font-size: 1.5rem;
   display: flex;
@@ -99,17 +118,14 @@ body{
     margin-top: 20px;
   }
 
-  .sideContentView:hover {
-    
-  }
-
   .sideContent {
     margin: 30px 0px;
     height: 60vh;
     overflow: scroll;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: 1;
+
+    gap: 30px;
     align-items: center;
     border-bottom: 1px solid rgba(128, 128, 128, 0.1);
     // box-shadow: 0px 10px 100px rgba(128, 128, 128, 0.1);
@@ -122,19 +138,37 @@ body{
   }
   .sideContentView {
     display: flex;
-    padding: 10px;
+    padding: 5px 5px;
     text-align: center;
     align-items: center;
     gap: 5px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     flex-direction: column;
     border-radius: 5px;
     cursor: pointer;
+    overflow-y: hidden;
+    font-size: 20px;
+  }
+}
+.expandedWrapper {
+  overflow: hidden;
+  transition: all 300ms ease-in;
+  width: 200px;
+  .sideContentView {
+    flex-direction: row;
+    width: 150px;
+    padding-left: 5px;
+    justify-content: left;
+    height: 40px;
+  }
+  .sideText {
+    font-size: 18px;
   }
 }
 
 .formContainer {
+ 
   border-radius: 30px;
   position: fixed;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -182,6 +216,8 @@ body{
       border: none;
       background-color: #e2e2e265;
       border-radius: 12px;
+
+      text-indent: 20px;
     }
     button {
       height: 40px;
@@ -195,27 +231,250 @@ body{
     font-size: smaller;
     font-weight: 600;
   }
-  .formClose{
-    color:black;
-    position:fixed;
-    right:0;
-    padding:5px 20px;
+  .formClose {
+    color: black;
+    position: fixed;
+    right: 0;
+    padding: 5px 20px;
     font-size: 2rem;
     font-weight: 800;
   }
 }
 
-.errorPage {
-  width: 100vw;
+
+
+.dashNav {
+  transition: all 200ms ease-in;
+  position: sticky;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  margin: auto;
+  text-align: center;
+  height: 60px;
+  margin-left: 60px;
+  width: calc(100vw - 60px);
+  border-bottom: 1px solid rgb(230, 230, 230);
+  box-shadow: 2px 2px 20px rgba(128, 128, 128, 0.2);
+  .dashNavWrapper {
+    margin: 0px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    .navLogo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .dashNavWrapperRight {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 30px;
+      .searchWrap {
+        justify-content: space-between;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 2px 15px;
+        border-radius: 20px;
+        width: 300px;
+        height: 35px;
+        background-color: #edecec;
+        .searchLeft {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
+          input {
+            // width:80px;
+
+            border: none;
+            background-color: transparent;
+            outline: none;
+          }
+        }
+      }
+      .icon {
+        cursor: pointer;
+      }
+      .icon:hover {
+        color: orange;
+      }
+    }
+  }
 }
 
-.homeOutlet{
+.profile {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  background-color: mintcream;
+  .profileWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px 40px;
+    .profileLeft {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      .profileImage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .imageContainer {
+          background-color: skyblue;
+          border-radius: 50%;
+          width: 80px;
+          height: 80px;
+        }
+        .edit{
+          position:absolute;
+          font-size: 20px;
+          width: 25px;
+          height: 25px;
+          background-color: mintcream;
+          padding: 2px;
+          border-radius: 50%;
+          bottom: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+      }
+      .profileInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        .hello {
+          font-size: 20px;
+          font-weight: 200;
+        }
+        .profileName {
+          font-size: 22px;
+          font-weight: 600;
+        }
+        .email {
+          font-size: 16px;
+          font-weight: 100;
+        }
+      }
+    }
+    .followers {
+      display: flex;
+      align-items: center;
+      font-weight: 200;
+      font-size: 20px;
+    }
+  }
+}
+
+.aboutMe {
   
-  margin-left: 80px;
-  margin-top: 10px;
+  padding: 30px;
+  border-bottom: 1px solid rgba(176, 173, 173, 0.289);
+  background-color: #e5d6f129;
+  // padding: 30px;
+  .aboutWrapper {
+    .aboutHead {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .about {
+        font-size: 16px;
+        color: rgb(63, 63, 63);
+        font-weight: 600;
+      }
+      .editBtn {
+        button {
+          padding: 5px 30px;
+          border-radius: 8px;
+          border: none;
+          background-color: orange;
+          color: rgb(240, 240, 240);
+          font-size: 16px;
+        }
+      }
+    }
+    .inputWrapper {
+      padding: 20px 15px;
+      background-color: white;
+      border-radius: 12px;
+      margin: 20px;
+
+      textarea {
+        width: 100%;
+        height: 100px;
+        text-indent: 20px;
+        outline: none;
+        resize: none;
+        border: none;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+.onWeb {
+  border-bottom: 1px solid rgba(176, 173, 173, 0.289);
+  background-color: #e5d6f129;
+  padding: 30px;
+  .onWebWrap {
+    .head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .title {
+        font-size: 16px;
+        color: rgb(63, 63, 63);
+        font-weight: 600;
+      }
+      .editBtn {
+        button {
+          padding: 5px 30px;
+          border-radius: 8px;
+          border: none;
+          background-color: orange;
+          color: rgb(240, 240, 240);
+          font-size: 16px;
+        }
+      }
+    }
+    .inputWrapper {
+      width: 100%;
+      gap: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      .inputContain {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        .inputElem {
+          color: grey;
+          font-size: 20px;
+          padding: 0px 20px;
+          justify-content: start;
+          align-items: center;
+          background-color: white;
+          border-radius: 8px;
+          height: 40px;
+          display: flex;
+          flex-direction: row;
+          input[type="text"] {
+            width: 100%;
+            outline: none;
+            text-indent: 10px;
+            border: none;
+          }
+        }
+      }
+    }
+  }
 }

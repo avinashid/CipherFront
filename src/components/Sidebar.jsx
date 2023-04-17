@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import {
   useSelector as reduxSelector,
@@ -14,22 +13,50 @@ import {
   FaUsersCog,
   FaWpforms,
   FaSignInAlt,
+  FaUser,
 } from "react-icons/fa";
-import { toggleCurrSidebar } from "../features/stateSlice";
+import {
+  toggleCurrSidebar,
+  toggleExpandedSidebar,
+} from "../features/stateSlice";
+import { fetchInitialState } from "../thunks/userThunks";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const SideBtn = reduxSelector((state) => state.state.currSidebar);
   const dispatch = reduxDispatch();
+
+  const expandedSidebar = reduxSelector((state) => state.state.expandedSidebar);
   const toggleSideBtn = (e) => {
     dispatch(toggleCurrSidebar(e));
-    navigate(e);
+    {
+      e !== "home" ? navigate(e) : navigate("/");
+    }
+  };
+  const isSignin = reduxSelector((state) => state.user.isLoggedIn);
+  const toggleSignin = (e) => {
+    if (isSignin) {
+      localStorage.setItem("userToken", "");
+      dispatch(fetchInitialState());
+      dispatch(toggleCurrSidebar("home"));
+      navigate("/");
+    } else {
+      dispatch(toggleCurrSidebar("signin"));
+      navigate("/signin");
+    }
   };
 
   return (
-    <div className="sideWrapper">
+    <div
+      className={
+        expandedSidebar ? "sideWrapper expandedWrapper" : "sideWrapper"
+      }
+    >
       <div className="sideToggle">
-        <div className="sideContentView">
+        <div
+          className="sideContentView"
+          onClick={() => dispatch(toggleExpandedSidebar(!expandedSidebar))}
+        >
           <FaThList />
         </div>
       </div>
@@ -67,6 +94,18 @@ const Sidebar = () => {
         >
           <FaCompass />
           <div className="sideText">Trending</div>
+        </div>
+        <div
+          className={
+            SideBtn === "dashboard"
+              ? "sideContentView sideBtnColor"
+              : "sideContentView sideContentHover"
+          }
+          onClick={() => toggleSideBtn("dashboard")}
+        >
+          <FaUser />
+
+          <div className="sideText">Dashboard</div>
         </div>
         <div
           className={
@@ -120,10 +159,10 @@ const Sidebar = () => {
               ? "sideContentView sideBtnColor"
               : "sideContentView sideContentHover"
           }
-          onClick={() => toggleSideBtn("signin")}
+          onClick={toggleSignin}
         >
           <FaSignInAlt />
-          <div className="sideText">Signin</div>
+          <div className="sideText">{isSignin ? "Signout" : "Sign in"}</div>
         </div>
       </div>
     </div>

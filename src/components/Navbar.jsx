@@ -6,6 +6,7 @@ import {
 } from "react-redux";
 import { toggleCurrNavbar } from "../features/stateSlice";
 import { useNavigate } from "react-router-dom";
+import { toggleCurrSidebar } from "../features/stateSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -49,7 +50,15 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navButton">
-          <button className="navBtn" onClick={()=>navigate("signup")}>New User </button>
+          <button
+            className="navBtn "
+            onClick={() => {
+              navigate("signup");
+               dispatch(toggleCurrSidebar("home"));
+            }}
+          >
+            New User{" "}
+          </button>
         </div>
       </div>
     </div>

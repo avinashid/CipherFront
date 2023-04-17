@@ -2,13 +2,51 @@ import React from "react";
 
 import logo from "../assets/Cipherschools_192x192.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch as reduxDispatch, useSelector } from "react-redux";
 import { FaRegTimesCircle } from "react-icons/fa";
+import { toggleCurrSidebar } from "../features/stateSlice";
+import { fetchInitialState } from "../thunks/userThunks";
 
 const Signin = () => {
   const navigate = useNavigate();
+  const dispatch = reduxDispatch();
+  const select = useSelector((state) => state);
+  console.log(select);
+  const formData = {
+    email: "",
+    password: "",
+  };
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const res = await fetch("http://localhost:5000/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+      }),
+    });
+
+    if (!res.ok) {
+      window.alert("Email or Password incorrect");
+    } else {
+      let loginCredentials = {};
+      loginCredentials = await res.json();
+      localStorage.setItem("userToken", loginCredentials.token);
+      await dispatch(fetchInitialState());
+      navigate("/dashboard");
+    }
+  };
+
+  const closeForm = () => {
+    navigate("/");
+    dispatch(toggleCurrSidebar("home"));
+  };
   return (
     <div className="formContainer">
-      <div className="formClose" onClick={() =>{ navigate("/") }}>
+      <div className="formClose" onClick={closeForm}>
         <FaRegTimesCircle />
       </div>
       <div className="formLogo">
@@ -22,14 +60,22 @@ const Signin = () => {
         <div>Please provide information to Sign In</div>
       </div>
       <div className="">
-        <form className="mainForm" action="" method="post">
+        <form className="mainForm" onSubmit={handleLogin}>
           <input
-            type="text"
-            placeholder="    Email Address"
+            required
+            type="email"
+            placeholder="Email Address"
             name="EmailAddress"
+            onChange={(e) => (formData.email = e.target.value)}
           />
-          <input type="password" placeholder="    Password" name="Password" />
-          <button type="submit">Create Account</button>
+          <input
+            required
+            type="password"
+            placeholder="Password"
+            name="Password"
+            onChange={(e) => (formData.password = e.target.value)}
+          />
+          <button type="submit">Sign In</button>
         </form>
       </div>
       <div className="formBottom">
