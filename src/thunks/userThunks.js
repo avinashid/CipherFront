@@ -8,13 +8,16 @@ export const fetchInitialState = createAsyncThunk(
     console.log(token, " token");
     if (token) {
       try {
-        const response = await fetch("http://localhost:5000/api/users/me", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "https://cipherbackend-3zyn.onrender.com/api/users/me",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const data = await response.json();
         return {
           firstname: data.firstname,
@@ -52,25 +55,26 @@ export const fetchInitialState = createAsyncThunk(
   }
 );
 
-
 export const fetchUserData = createAsyncThunk(
-
   "user/fetchUserData",
   async () => {
-    const userId = await reduxSelector(state=>state.user.id);
+    const userId = await reduxSelector((state) => state.user.id);
     const token = Cookies.get("userToken");
     if (token) {
       try {
-        const response = await fetch(`http://localhost:5000/api/users/getuserdata:${userId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          `https://cipherbackend-3zyn.onrender.com/api/users/getuserdata:${userId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const data = await response.json();
         console.log(data);
-        console.log("this is data")
+        console.log("this is data");
         return {
           firstname: data.firstname,
           lastname: data.lastname,

@@ -17,7 +17,7 @@ const Signup = () => {
     password: "",
   };
   const setUserData = async (e) => {
-    const res = await fetch("http://localhost:5000/api/users/userdata", {
+    const res = await fetch("https://cipherbackend-3zyn.onrender.com/api/users/userdata", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const Signup = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/api/users/", {
+    const res = await fetch("https://cipherbackend-3zyn.onrender.com/api/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
