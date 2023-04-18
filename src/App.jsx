@@ -11,11 +11,14 @@ import Creators from "./pages/Home/Creators";
 import Followers from "./pages/Home/followers";
 import Discord from "./pages/Home/Discord";
 import ErrorPage from "./pages/ErrorPage";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  HashRouter,
+  RouterProvider,
+} from "react-router-dom";
 import { useDispatch as reduxDispatch } from "react-redux";
 import { fetchInitialState } from "./thunks/userThunks";
 import ProtectedRoute from "./pages/ProtectedRoute";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -68,12 +71,16 @@ const router = createBrowserRouter([
 
 const App = () => {
   const dispatch = reduxDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchInitialState());
   }, []);
 
-  return <RouterProvider router={router} />;
+  return (
+    <HashRouter>
+      <RouterProvider router={router} />
+    </HashRouter>
+  );
 };
 
 export default App;
