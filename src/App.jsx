@@ -13,13 +13,13 @@ import Discord from "./pages/Home/Discord";
 import ErrorPage from "./pages/ErrorPage";
 import {
   createBrowserRouter,
-  HashRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import { useDispatch as reduxDispatch } from "react-redux";
 import { fetchInitialState } from "./thunks/userThunks";
 import ProtectedRoute from "./pages/ProtectedRoute";
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <LandingPage />,
@@ -77,9 +77,7 @@ const App = () => {
   }, []);
 
   return (
-    <HashRouter>
       <RouterProvider router={router} />
-    </HashRouter>
   );
 };
 

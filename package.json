@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "http://localhost:5000",
+  "homepage": "https://avinashid.github.io/CipherFront",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
